@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.toptal.com/designers/subtlepatterns/uploads/restaurant.png');
+            background-size: cover;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .buttons button:hover {
+            transform: scale(1.1);
+        }
+        #btn-si {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #btn-si:hover {
+            background-color: #45a049;
+        }
+        #btn-no {
+            background-color: #f44336;
+            color: white;
+        }
+        #btn-no:hover {
+            background-color: #e53935;
+        }
+        @keyframes siAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+        @keyframes noAnimation {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+        .animate-si {
+            animation: siAnimation 0.5s ease;
+        }
+        .animate-no {
+            animation: noAnimation 0.5s ease;
+        }
+        .videos {
+            display: none;
+            margin-top: 20px;
+        }
+        .videos.show {
+            display: block;
+        }
+        iframe {
+            width: 100%;
+            max-width: 320px;
+            height: 240px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Desayunamos juntos?</h1>
+        <div class="buttons">
+            <button id="btn-si">Sí</button>
+            <button id="btn-no">No</button>
+        </div>
+        <div id="videos-si" class="videos">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div id="videos-no" class="videos">
+            <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY?rel=0&modestbranding=1&autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p id="response" style="margin-top: 20px; font-size: 20px;"></p>
+    </div>
+
+    <script>
+        document.getElementById('btn-si').addEventListener('click', function() {
+            var response = document.getElementById('response');
+            var videosSi = document.getElementById('videos-si');
+            var videosNo = document.getElementById('videos-no');
+            
+            response.textContent = '¡Genial! Vamos a desayunar juntos.';
+            response.className = 'animate-si';
+            
+            videosSi.className = 'videos show';
+            videosNo.className = 'videos';
+        });
+
+        document.getElementById('btn-no').addEventListener('click', function() {
+            var response = document.getElementById('response');
+            var videosSi = document.getElementById('videos-si');
+            var videosNo = document.getElementById('videos-no');
+            
+            response.textContent = 'Oh, qué lástima. Tal vez otro día.';
+            response.className = 'animate-no';
+            
+            videosSi.className = 'videos';
+            videosNo.className = 'videos show';
+        });
+    </script>
+</body>
+</html>
